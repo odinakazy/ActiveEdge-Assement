@@ -1,0 +1,82 @@
+/* src/Artists.css */
+.artists-container {
+  padding: 20px;
+}
+.artists-container h1 {
+  text-align: center;
+}
+
+.artists-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.artist-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  transition: transform 0.2s;
+}
+
+.artist-card:hover {
+  transform: translateY(-10px);
+}
+
+.artist-card h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.artist-card p {
+  color: #777;
+}
+.albums-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.flex-item1 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.flex-item2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: -1.5rem;
+}
+.bold {
+  font-weight: 900;
+  color: #333;
+}
+
+.album-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px;
+}
+.albums-toggle {
+  cursor: pointer; /* Indicate that the h3 is clickable */
+  color: blue;
+  text-decoration: underline;
+}
+
+.album-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
