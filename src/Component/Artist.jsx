@@ -6,9 +6,11 @@ import Engageimg from "../assets/Engage.png";
 function Artist() {
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
+  const [tweets, setTweets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedArtistId, setSelectedArtistId] = useState(null);
+  const [selectedTweetId, setSelectedTweetId] = useState(null);
 
   useEffect(() => {
     // fetch artists
@@ -37,8 +39,21 @@ function Artist() {
       }
     };
 
+    // Fetch tweets
+    const fetchTweets = async () => {
+      try {
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/comments"
+        );
+        setTweets(response.data);
+      } catch (error) {
+        console.error("Error fetching tweets:", error);
+      }
+    };
+
     fetchArtists();
     fetchAlbums();
+    fetchTweets();
   }, []);
 
   if (loading) return <div>Loading...</div>;
@@ -48,10 +63,18 @@ function Artist() {
   const getAlbumsForArtist = (artistId) => {
     return albums.filter((album) => album.userId === artistId);
   };
+  const getTweetsForArtist = (artistId) => {
+    return tweets.filter((tweet) => tweet.postId === artistId);
+  };
 
   // Function to toggle the display of albums
   const toggleAlbums = (artistId) => {
     setSelectedArtistId(selectedArtistId === artistId ? null : artistId);
+  };
+
+  // Function to toggle the display of tweets
+  const toggleTweets = (artistId) => {
+    setSelectedTweetId(selectedTweetId === artistId ? null : artistId);
   };
 
   return (
@@ -90,6 +113,30 @@ function Artist() {
                   <div key={album.id} className="album-card">
                     <img src={Engageimg} className="album-image" />
                     <p>{album.title}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <h3
+              onClick={() => toggleTweets(artist.id)}
+              className={`tweets-toggle ${
+                selectedTweetId === artist.id ? "toggle-active" : ""
+              }`}
+            >
+              View Tweets
+            </h3>
+            {selectedTweetId === artist.id && (
+              <div className="tweets-container">
+                {getTweetsForArtist(artist.id).map((tweet) => (
+                  <div key={tweet.id} className="tweet-card">
+                    <div className="tweet-header">
+                      <h4>{tweet.name}</h4>
+                      <p>{tweet.email}</p>
+                    </div>
+                    <div className="tweet-body">
+                      <p>{tweet.body}</p>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -80,3 +80,32 @@
   height: 50px;
   object-fit: cover;
 }
+.tweet-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tweet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.tweet-body {
+  color: #333;
+}
+.tweets-toggle {
+  cursor: pointer; /* Indicate that the h3 is clickable */
+  font-weight: 400;
+}
+.toggle-active {
+  font-weight: 700;
+  border-bottom: 2px solid darkturquoise;
+  width: 25%;
+}
